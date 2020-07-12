@@ -1,0 +1,28 @@
+<%- include ('./partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/index.css">
+
+<div class="showcase">
+  <div class="showcase-top">
+    <img src="/images/editedRick.jpg">
+  </div>
+  <div class="showcase-content">
+    <h1>Search Your Favorite Character</h1>
+    <form action="/character" method="GET">
+      <div class="form-group">
+        <input class="form-control" type="text" name="characterName" placeholder="Name of character" required>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary form-control">Search</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<%- include ('./partials/footer') -%>

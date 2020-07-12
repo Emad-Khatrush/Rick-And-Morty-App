@@ -1,0 +1,60 @@
+<%- include ('../partials/header') -%>
+<div class="ui main container segment">
+  <div class="ui huge header"> All Characters
+    <% if(parseData.info.pages != pageNum){ %>
+    <form class="displayInLine float-right" action="/character" method="POST">
+    <button class="btn btn-sm btn-outline-secondary" name="nextPage" value="<%= parseData.info.next %>&characterName=<%=characterName%>">
+      Next page
+    </button>
+  </form>
+  <% } %>
+
+  <% if(parseData.info.prev != null){ %>
+  <form class="displayInLine float-right" action="/character" method="POST">
+    <button class="btn btn-sm btn-outline-secondary" name="prevPage" value="<%= parseData.info.prev %>&characterName=<%=characterName%>">Previous page</button>
+  </form>
+  <% } %>
+
+  <% if(pageNum != 0) { %>
+  <h4 class="displayInLine float-right downFix"> <%= pageNum %> / <%= parseData.info.pages %> </h4>
+<% }else { %>
+  <h4 class="displayInLine float-right downFix"> 1 / <%= parseData.info.pages %></h4>
+<%  } %>
+</div>
+
+  <div class="ui top attached segment">
+    <div class="ui divided items">
+      <% parseData.results.forEach(function(data){ %>
+        <div class="item">
+          <div class="image">
+            <img src=" <%= data.image %> ">
+          </div>
+          <div class="content">
+            <a class="header" href="/character/<%=data.id%>"> <%= data.name %> </a>
+            <div class="meta">
+              <span> <%= data.created.substring(0,10) %> </span>
+            </div>
+            <div class="description">
+              <% if(data.status == "Dead"){ %>
+                <p><i class="fas fa-times-circle"></i> <%= data.status %> </p>
+              <% }else if(data.status == "Alive"){ %>
+                <p><i class="fas fa-check-circle"></i> <%= data.status %> </p>
+              <% }else{ %>
+                <p><i class="fas fa-question-circle"></i> <%= data.status %> </p>
+              <% } %>
+            </div>
+            <div class="extra">
+              <a class="ui floated basic violet button" href="/character/<%=data.id%>">
+              Read More
+              <i class="right chevron icon"></i>
+             </a>
+            </div>
+          </div>
+        </div>
+
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<%- include ('../partials/footer') -%>

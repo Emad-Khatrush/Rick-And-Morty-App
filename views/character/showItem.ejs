@@ -1,0 +1,53 @@
+<%- include ('../partials/header') -%>
+<div class="ui main container segment">
+  <div class="ui huge header"> <%= parseData.name %>
+    <% if(parseData.status == "Dead"){ %>
+      <p class="displayInLine float-right"><i class="fas fa-times-circle"></i> <%= parseData.status %> </p>
+    <% }else if(parseData.status == "Alive"){ %>
+      <p class="displayInLine float-right"><i class="fas fa-check-circle"></i> <%= parseData.status %> </p>
+    <% }else{ %>
+      <p class="displayInLine float-right"><i class="fas fa-question-circle"></i> <%= parseData.status %> </p>
+    <% } %>
+  </div>
+  <div class="ui top attached segment">
+    <div class="item">
+      <img class="ui centered rounded image" src="<%=parseData.image %>">
+      <div class="content displayInLine">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- group 1 -->
+            <b> Last known location: </b>
+            <p> <%= location.name %> </p>
+            <b> First seen in: </b>
+            <p> <%= episode.name %> </p>
+          </div>
+
+          <div class="col-md-4">
+            <!-- group 2 -->
+            <b> Gender: </b>
+            <p> <%= parseData.gender %> </p>
+            <b> Type: </b>
+            <% if(parseData.type){ %>
+            <p> <%= parseData.type %> </p>
+            <% }else{ %>
+              <p> Not Found </p>
+            <% } %>
+          </div>
+
+          <div class="col-md-4">
+            <!-- group 2 -->
+            <b> Dimension: </b>
+            <p> <%= location.dimension %> </p>
+            <b> Species: </b>
+            <p> <%= parseData.species %> </p>
+          </div>
+        </div>
+      </div>
+
+      <a class ="btn btn-md btn-primary" href="/character?page=<%= pageNum %>&characterName=<%=characterName%>">Go back</a>
+
+    </div>
+  </div>
+</div>
+
+<%- include ('../partials/footer') -%>

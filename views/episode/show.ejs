@@ -1,0 +1,52 @@
+<%- include ('../partials/header') -%>
+<div class="ui main container segment">
+  <div class="ui huge header"> All Episodes
+    <% if(parseData.info.pages != pageNum){ %>
+    <form class="displayInLine float-right" action="/episode" method="POST">
+    <button class="btn btn-sm btn-outline-secondary" name="nextPage" value="<%= parseData.info.next %>">Next page</button>
+  </form>
+  <% } %>
+
+  <% if(parseData.info.prev != null){ %>
+  <form class="displayInLine float-right" action="/episode" method="POST">
+    <button class="btn btn-sm btn-outline-secondary" name="prevPage" value="<%= parseData.info.prev %>">Previous page</button>
+  </form>
+  <% } %>
+
+  <% if(pageNum != 0){ %>
+  <h4 class="displayInLine float-right downFix"> <%= pageNum %> / <%= parseData.info.pages %> </h4>
+<% }else{ %>
+  <h4 class="displayInLine float-right downFix"> 1 / <%= parseData.info.pages %></h4>
+<%  } %>
+</div>
+
+  <div class="ui top attached segment">
+    <div class="ui divided items">
+      <% parseData.results.forEach(function(data){ %>
+        <div class="item">
+          <div class="image">
+            <h1> <%= data.episode.substring(0,3) %> <%= data.episode.substring(3,6) %>  </h1>
+          </div>
+          <div class="content">
+            <a class="header" href="/episode/<%=data.id%>"> <%= data.name %> </a>
+            <div class="meta">
+              <span> <%= data.created.substring(0,10) %> </span>
+            </div>
+            <div class="description">
+
+            </div>
+            <div class="extra">
+              <a class="ui floated basic violet button" href="/episode/<%=data.id%>">
+              Read More
+              <i class="right chevron icon"></i>
+             </a>
+            </div>
+          </div>
+        </div>
+
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<%- include ('../partials/footer') -%>

@@ -1,0 +1,73 @@
+<%- include ('./partials/header') -%>
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+<h1 class ="history"><span class="yellow">History</pan></h1>
+
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Endpoints</h1></th>
+			<th><h1>Visits</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<tr>
+			<td>/episode</td>
+			<td><%= episodeReport.count %></td>
+		</tr>
+
+    <tr>
+			<td>/character</td>
+			<td><%= characterReport.count %></td>
+		</tr>
+
+	</tbody>
+</table>
+
+<h1 class="history"><span class="yellow">All requests has been made</span></h1>
+
+  <table class="container">
+  	<thead>
+  		<tr>
+  			<th><h1>Endpoints</h1></th>
+  			<th><h1>Date And Time</h1></th>
+  		</tr>
+  	</thead>
+  	<tbody>
+
+
+        <% if(episodeReport.createdDate[0]){ %>
+        <% episodeReport.createdDate.forEach(function(date){ %>
+          <tr>
+          <td>/episode</td>
+        <td> <%= date %> </td>
+        </tr>
+      <% }); %>
+  <%  }else{ %>
+    <td>/episode</td>
+    <td> Not Found </td>
+  <% } %>
+
+
+
+    <% if(characterReport.createdDate[0]){ %>
+    <% characterReport.createdDate.forEach(function(date){ %>
+      <tr>
+      <td>/character</td>
+    <td> <%= date %> </td>
+    </tr>
+  <% }); %>
+  <%  }else{ %>
+    <tr>
+
+  <td>/character</td>
+  <td> Not Found </td>
+  </tr>
+  <% } %>
+
+
+  	</tbody>
+  </table>
+
+<%- include ('./partials/footer') -%>

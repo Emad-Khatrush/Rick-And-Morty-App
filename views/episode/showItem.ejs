@@ -1,0 +1,30 @@
+<%- include ('../partials/header') -%>
+  <div class="ui main container segment">
+    <div class="ui huge header"> <%= parseData.name %></div>
+    <div class="ui top attached segment">
+      <div class="item">
+        <h1> <%= parseData.episode.substring(0,3) %> <%= parseData.episode.substring(3,6) %>  </h1>
+        <div class="content displayInLine">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- group 1 -->
+              <b> Air Date </b>
+              <p> <%= parseData.air_date  %> </p>
+            </div>
+
+            <div class="col-md-6">
+              <!-- group 2 -->
+              <b>Number of characters has played in this episode:</b>
+              <p> <%= parseData.characters.length  %> </p>
+
+            </div>
+          </div>
+        </div>
+
+        <a class ="btn btn-md btn-primary" href="/episode?page=<%= pageNum %>">Go back</a>
+
+      </div>
+    </div>
+  </div>
+
+<%- include ('../partials/footer') -%>
